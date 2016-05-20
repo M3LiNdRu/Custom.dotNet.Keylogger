@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual C++ Express 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Keylogger", "Keylogger\Keylogger.vcproj", "{C03604AD-96C4-4A85-B472-26E612D8C9F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C03604AD-96C4-4A85-B472-26E612D8C9F3}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C03604AD-96C4-4A85-B472-26E612D8C9F3}.Debug|Win32.Build.0 = Debug|Win32
+		{C03604AD-96C4-4A85-B472-26E612D8C9F3}.Release|Win32.ActiveCfg = Release|Win32
+		{C03604AD-96C4-4A85-B472-26E612D8C9F3}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
