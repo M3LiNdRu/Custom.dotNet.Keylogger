@@ -9,5 +9,6 @@ namespace KeyLogger.Library.Appenders
     public interface IOutputAppender
     {
         void SaveToBuffer(char key);
+        void FinalPush();
     }
 }
