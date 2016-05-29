@@ -1,10 +1,6 @@
 ﻿using Custom.dotNet.EraseItself;
 using KeyLogger.Library;
 using KeyLogger.Library.Appenders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 
 namespace KeyLoggerLibrary.ConsoleTest

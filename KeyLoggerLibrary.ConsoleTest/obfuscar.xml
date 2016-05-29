@@ -1,0 +1,14 @@
+﻿<?xml version='1.0'?>
+<Obfuscator>
+  <Var name="InPath" value=".\" />
+  <Var name="OutPath" value=".\Obfuscator_Output" />
+  <Var name="KeepPublicApi" value="false" />
+  <Var name="HidePrivateApi" value="true" />
+  <Var name="ReuseNames" value="false" />
+  <Var name="HideStrings" value="true" />
+  <!--<Var name="KeyFile" value=".\BasicExampleLibrary\test.snk" />-->
+  <Module file="$(InPath)\KeyLoggerLibrary.ConsoleTest.exe" />
+  <Module file="$(InPath)\KeyLogger.Library.dll" />
+  <Module file="$(InPath)\Custom.dotNet.EraseItself.dll" />
+  <!--<Module file="$(InPath)\Program.exe" />-->
+</Obfuscator>
