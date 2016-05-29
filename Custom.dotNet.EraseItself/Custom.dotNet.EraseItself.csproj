@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9F438565-BBCE-4AEE-A710-4DB1BA8EDB0A}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{C7957449-2708-4122-A35E-4CE098B718E3}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KeyLoggerLibrary.ConsoleTest</RootNamespace>
-    <AssemblyName>KeyLoggerLibrary.ConsoleTest</AssemblyName>
+    <RootNamespace>Custom.dotNet.EraseItself</RootNamespace>
+    <AssemblyName>Custom.dotNet.EraseItself</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -43,21 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="AutoEraseAssembly.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Custom.dotNet.EraseItself\Custom.dotNet.EraseItself.csproj">
-      <Project>{c7957449-2708-4122-a35e-4ce098b718e3}</Project>
-      <Name>Custom.dotNet.EraseItself</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KeyLogger.Library\KeyLogger.Library.csproj">
-      <Project>{956bce81-5d08-45c5-a681-00828e39a496}</Project>
-      <Name>KeyLogger.Library</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -67,18 +51,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <!-- Code to merge the assemblies into one:setup.exe -->
-  <UsingTask TaskName="ILMerge.MSBuild.Tasks.ILMerge" AssemblyFile="$(SolutionDir)\packages\ILMerge.MSBuild.Tasks.1.0.0.3\tools\ILMerge.MSBuild.Tasks.dll" />
-  <Target Name="AfterBuild">
-    <ItemGroup>
-      <MergeAsm Include="$(OutputPath)$(TargetFileName)" />
-      <MergeAsm Include="$(OutputPath)KeyLogger.Library.dll" />
-      <MergeAsm Include="$(OutputPath)Custom.dotNet.EraseItself.dll" />
-    </ItemGroup>
-    <PropertyGroup>
-      <MergedAssembly>$(ProjectDir)$(OutDir)Program.exe</MergedAssembly>
-    </PropertyGroup>
-    <Message Text="ILMerge @(MergeAsm) -&gt; $(MergedAssembly)" Importance="high" />
-    <ILMerge InputAssemblies="@(MergeAsm)" OutputFile="$(MergedAssembly)" TargetKind="SameAsPrimaryAssembly" />
-  </Target>
 </Project>

